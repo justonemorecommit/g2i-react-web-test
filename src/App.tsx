@@ -1,5 +1,15 @@
+import { Provider } from 'react-redux'
+import { Router } from 'react-router'
+
+import history from './history'
+import store from './store'
+
 function App() {
-  return <div className="App">Hello world!</div>;
+  return (
+    <Provider store={store}>
+      <Router history={history}></Router>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
