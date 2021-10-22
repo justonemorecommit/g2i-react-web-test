@@ -5,7 +5,7 @@ import Question from './containers/Question'
 function Routes() {
   return (
     <Switch>
-      <Route path="questions/:index" component={Question} />
+      <Route path="/questions/:index" component={Question} />
     </Switch>
   )
 }
