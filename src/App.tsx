@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'rc-tooltip/assets/bootstrap.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'

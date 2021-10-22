@@ -1,7 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Row, Container, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 import { AnyAction, bindActionCreators, Dispatch } from 'redux'
 import { createStructuredSelector } from 'reselect'
 
@@ -11,6 +10,9 @@ import {
   getQuestions,
   getQuestionsError,
   getQuestionsLoading,
+  getCurrentQuestion,
+  getCurrentIndex,
+  getQuestionsCount,
 } from '../../store/modules/questions/selectors'
 import { RootState } from '../../store/rootReducer'
 import { Question } from '../../types'
@@ -19,6 +21,9 @@ interface SelectedProps {
   questions: Question[]
   loading: boolean
   error: any
+  currentQuestion: Question | null
+  currentIndex: number
+  totalCount: number
 }
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) =>
@@ -30,34 +35,29 @@ const mapState = createStructuredSelector<RootState, SelectedProps>({
   questions: getQuestions,
   loading: getQuestionsLoading,
   error: getQuestionsError,
+  currentQuestion: getCurrentQuestion,
+  currentIndex: getCurrentIndex,
+  totalCount: getQuestionsCount,
 })
 
 type Props = SelectedProps & DispatchProps
 
 function QuestionContainer(props: Props) {
-  const { loadQuestions } = props
+  const { currentQuestion, currentIndex, totalCount, loadQuestions } = props
 
   useEffect(() => {
     loadQuestions()
-  }, [])
+  }, [loadQuestions])
+
+  const handleSubmit = useCallback(() => {}, [])
 
   return (
-    <Container className="pt-5">
-      <Row>
-        <Col
-          xl={6}
-          md={4}
-          lg={2}
-          className="offset-xl-3 offset-md-4 offset-lg-5">
-          <QuestionCard
-            question={{
-              question: 'Are you sure? This is a very difficult question',
-              category: 'Science',
-              correct_answer: 'True',
-              incorrect_answers: ['False'],
-            }}></QuestionCard>
-        </Col>
-      </Row>
+    <Container className="pt-5 d-flex justify-content-center">
+      <QuestionCard
+        question={currentQuestion}
+        onSubmit={handleSubmit}
+        currentIndex={currentIndex}
+        totalCount={totalCount}></QuestionCard>
     </Container>
   )
 }

@@ -1,6 +1,37 @@
 .question-card {
-  fieldset legend {
-    font-size: 1em;
-    font-weight: bold;
+  width: 375px;
+  background: #e3e3e3;
+  border: none;
+
+  .card-header {
+    background-color: transparent;
+    border: none;
+
+    .category {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .card-body {
+    padding: 50px 25px 50px 25px;
+    border: none;
+
+    .question-text {
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      padding: 80px 30px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    fieldset legend {
+      font-weight: bold;
+    }
+  }
+
+  .card-footer {
+    border: none;
+    background-color: transparent;
   }
 }

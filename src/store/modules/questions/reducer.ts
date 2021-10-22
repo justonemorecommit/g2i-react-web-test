@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 import { Question } from '../../../types'
-import { loadQuestions } from './actions'
+import { loadQuestions, submitAnswer } from './actions'
 
 interface ModuleState {
   questions: {
@@ -9,6 +9,7 @@ interface ModuleState {
     data: Question[]
     error: any
   }
+  currentIndex: number
 }
 
 const reducer = createReducer<ModuleState>(
@@ -18,6 +19,7 @@ const reducer = createReducer<ModuleState>(
       data: [],
       error: null,
     },
+    currentIndex: 0,
   },
   (builder) =>
     builder
@@ -33,6 +35,7 @@ const reducer = createReducer<ModuleState>(
         state.questions.loading = false
         state.questions.error = payload
       })
+      .addCase(submitAnswer, (state, { payload }) => {})
 )
 
 export default reducer
