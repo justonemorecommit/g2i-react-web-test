@@ -1,0 +1,19 @@
+.app-card {
+  background: #e3e3e3;
+  border: none;
+
+  .card-header {
+    background-color: transparent;
+    border: none;
+  }
+
+  .card-body {
+    padding: 50px 25px 50px 25px;
+    border: none;
+  }
+
+  .card-footer {
+    border: none;
+    background-color: transparent;
+  }
+}
