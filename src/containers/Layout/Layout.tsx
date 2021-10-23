@@ -1,12 +1,17 @@
 import { ReactNode } from 'react'
-import 'reactstrap'
+
+import './Layout.styles.scss'
 
 interface Props {
   children: ReactNode
 }
 
 function Layout(props: Props) {
-  return <div>{props.children}</div>
+  return (
+    <div className="d-flex pt-5 d-flex justify-content-center">
+      {props.children}
+    </div>
+  )
 }
 
 export default Layout

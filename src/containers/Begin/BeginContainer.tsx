@@ -27,7 +27,7 @@ function Begin(props: Props) {
             <p className="begin-text mb-5">Can you score 100%?</p>
           </CardBody>
           <CardFooter className="d-flex justify-content-center">
-            <Button onClick={handleClickBegin}>Begin</Button>
+            <Button onClick={handleClickBegin}>BEGIN</Button>
           </CardFooter>
         </AppCard>
       </AppContainer>

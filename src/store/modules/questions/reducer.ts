@@ -10,6 +10,7 @@ interface ModuleState {
     error: any
   }
   currentIndex: number
+  correctIndexes: number[]
 }
 
 const reducer = createReducer<ModuleState>(
@@ -20,6 +21,7 @@ const reducer = createReducer<ModuleState>(
       error: null,
     },
     currentIndex: 0,
+    correctIndexes: [],
   },
   (builder) =>
     builder
@@ -35,7 +37,15 @@ const reducer = createReducer<ModuleState>(
         state.questions.loading = false
         state.questions.error = payload
       })
-      .addCase(submitAnswer, (state, { payload }) => {})
+      .addCase(submitAnswer, (state, { payload }) => {
+        const currentQuestion = state.questions.data[state.currentIndex]
+
+        if (currentQuestion.correct_answer === payload.answer) {
+          state.correctIndexes.push(state.currentIndex)
+        }
+
+        state.currentIndex += 1
+      })
 )
 
 export default reducer

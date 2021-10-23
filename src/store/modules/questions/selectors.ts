@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { createSelector } from 'reselect'
 
 import { RootState } from '../../rootReducer'
@@ -32,4 +33,15 @@ export const getCurrentIndex = createSelector(
 export const getQuestionsCount = createSelector(
   getState,
   (state) => state.questions.data.length
+)
+
+export const getCorrectAnswers = createSelector(getState, (state) =>
+  state.correctIndexes.map((index) => state.questions.data[index])
+)
+
+export const getIncorrectAnswers = createSelector(getState, (state) =>
+  _.difference(
+    _.range(0, state.questions.data.length),
+    state.correctIndexes
+  ).map((index) => state.questions.data[index])
 )

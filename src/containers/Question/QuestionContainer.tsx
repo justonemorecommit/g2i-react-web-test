@@ -1,11 +1,15 @@
 import { useCallback, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Container } from 'reactstrap'
+import { RouteComponentProps } from 'react-router'
 import { AnyAction, bindActionCreators, Dispatch } from 'redux'
 import { createStructuredSelector } from 'reselect'
 
+import AppContainer from '../../components/AppContainer'
 import QuestionCard from '../../components/QuestionCard'
-import { loadQuestions } from '../../store/modules/questions/actions'
+import {
+  loadQuestions,
+  submitAnswer,
+} from '../../store/modules/questions/actions'
 import {
   getQuestions,
   getQuestionsError,
@@ -27,7 +31,7 @@ interface SelectedProps {
 }
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) =>
-  bindActionCreators({ loadQuestions }, dispatch)
+  bindActionCreators({ loadQuestions, submitAnswer }, dispatch)
 
 type DispatchProps = ReturnType<typeof mapDispatch>
 
@@ -40,25 +44,41 @@ const mapState = createStructuredSelector<RootState, SelectedProps>({
   totalCount: getQuestionsCount,
 })
 
-type Props = SelectedProps & DispatchProps
+type Props = SelectedProps & DispatchProps & RouteComponentProps
 
 function QuestionContainer(props: Props) {
-  const { currentQuestion, currentIndex, totalCount, loadQuestions } = props
+  const {
+    currentQuestion,
+    currentIndex,
+    totalCount,
+    loadQuestions,
+    submitAnswer,
+    history,
+  } = props
+
+  useEffect(() => {
+    history.push('/questions/' + (currentIndex + 1))
+  }, [currentIndex, history])
 
   useEffect(() => {
     loadQuestions()
   }, [loadQuestions])
 
-  const handleSubmit = useCallback(() => {}, [])
+  const handleSubmit = useCallback(
+    (answer: string) => {
+      submitAnswer({ answer })
+    },
+    [submitAnswer]
+  )
 
   return (
-    <Container className="pt-5 d-flex justify-content-center">
+    <AppContainer>
       <QuestionCard
         question={currentQuestion}
         onSubmit={handleSubmit}
         currentIndex={currentIndex}
         totalCount={totalCount}></QuestionCard>
-    </Container>
+    </AppContainer>
   )
 }
 

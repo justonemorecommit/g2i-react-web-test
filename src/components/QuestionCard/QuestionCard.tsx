@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import {
-  Card,
   CardHeader,
   CardBody,
   CardFooter,
@@ -59,8 +58,7 @@ function QuestionCard(props: Props) {
       <CardBody className="d-flex align-items-center flex-column">
         <section className="mb-3 question-text">
           {question ? (
-            <span
-              dangerouslySetInnerHTML={{ __html: question.question }}></span>
+            <p dangerouslySetInnerHTML={{ __html: question.question }}></p>
           ) : (
             <Skeleton count={5} width="200px" height="40px" />
           )}
@@ -68,7 +66,7 @@ function QuestionCard(props: Props) {
         <div>
           {question ? (
             <span>
-              {currentIndex + 1}&nbsp;/&nbsp;{totalCount}
+              {currentIndex + 1} of {totalCount}
             </span>
           ) : (
             <Skeleton width="50px" height="25px" />
@@ -102,7 +100,7 @@ function QuestionCard(props: Props) {
       <CardFooter className="d-flex justify-content-center">
         {question ? (
           <Button onClick={handleSubmit} disabled={!selected}>
-            Submit
+            SUBMIT
           </Button>
         ) : (
           <Skeleton width="100px" height="40px" />
