@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 import { Question } from '../../../types'
-import { loadQuestions, submitAnswer } from './actions'
+import { loadQuestions, playAgain, submitAnswer } from './actions'
 
 interface ModuleState {
   questions: {
@@ -10,7 +10,7 @@ interface ModuleState {
     error: any
   }
   currentIndex: number
-  correctIndexes: number[]
+  answers: string[]
 }
 
 const reducer = createReducer<ModuleState>(
@@ -21,7 +21,7 @@ const reducer = createReducer<ModuleState>(
       error: null,
     },
     currentIndex: 0,
-    correctIndexes: [],
+    answers: [],
   },
   (builder) =>
     builder
@@ -38,13 +38,17 @@ const reducer = createReducer<ModuleState>(
         state.questions.error = payload
       })
       .addCase(submitAnswer, (state, { payload }) => {
-        const currentQuestion = state.questions.data[state.currentIndex]
-
-        if (currentQuestion.correct_answer === payload.answer) {
-          state.correctIndexes.push(state.currentIndex)
-        }
+        state.answers[state.currentIndex] = payload.answer
 
         state.currentIndex += 1
+
+        if (state.currentIndex === state.questions.data.length) {
+          state.currentIndex = 0
+        }
+      })
+      .addCase(playAgain, (state) => {
+        state.currentIndex = 0
+        state.answers = []
       })
 )
 

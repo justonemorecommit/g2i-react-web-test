@@ -1,0 +1,11 @@
+.answer-list-group {
+  .list-group-item {
+    border: 0px;
+    background: #e3e3e3;
+
+    &__icon-wrapper {
+      width: 32px;
+      padding: 0px 6px;
+    }
+  }
+}

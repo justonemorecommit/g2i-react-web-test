@@ -5,4 +5,12 @@ interface Question {
   incorrect_answers: string[]
 }
 
-export type { Question }
+interface TravisResult {
+  correctCount: number
+  incorrectCount: number
+  correctness: boolean[]
+  questions: Question[]
+  answers: string[]
+}
+
+export type { Question, TravisResult }

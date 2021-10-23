@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Button, CardBody, CardFooter } from 'reactstrap'
+import { Button, CardBody, CardFooter, CardHeader } from 'reactstrap'
 
-import AppCard from '../../components/AppCard'
+import AppCard, { AppCardTitle } from '../../components/AppCard'
 import AppContainer from '../../components/AppContainer'
 import './BeginContainer.styles.scss'
 
@@ -19,8 +19,10 @@ function Begin(props: Props) {
     <div className="begin-container">
       <AppContainer>
         <AppCard className="begin-card">
+          <CardHeader>
+            <AppCardTitle title="Welcome to the Trivia Challenge!" />
+          </CardHeader>
           <CardBody>
-            <h1 className="page-title">Welcome to the Trivia Challenge!</h1>
             <p className="begin-text">
               You will be presented with 10 True or False questions.
             </p>

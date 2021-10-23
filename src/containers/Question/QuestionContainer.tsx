@@ -50,6 +50,7 @@ function QuestionContainer(props: Props) {
   const {
     currentQuestion,
     currentIndex,
+    loading,
     totalCount,
     loadQuestions,
     submitAnswer,
@@ -67,14 +68,18 @@ function QuestionContainer(props: Props) {
   const handleSubmit = useCallback(
     (answer: string) => {
       submitAnswer({ answer })
+
+      if (currentIndex === totalCount - 1) {
+        history.push('/result')
+      }
     },
-    [submitAnswer]
+    [history, totalCount, currentIndex, submitAnswer]
   )
 
   return (
     <AppContainer>
       <QuestionCard
-        question={currentQuestion}
+        question={loading ? null : currentQuestion}
         onSubmit={handleSubmit}
         currentIndex={currentIndex}
         totalCount={totalCount}></QuestionCard>

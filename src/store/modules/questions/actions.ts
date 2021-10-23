@@ -7,3 +7,5 @@ export const loadQuestions = createAsyncThunk('loadQuestion', () =>
 )
 
 export const submitAnswer = createAction<{ answer: string }>('submitAnswer')
+
+export const playAgain = createAction('playAgain')

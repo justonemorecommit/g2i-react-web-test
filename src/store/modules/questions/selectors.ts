@@ -1,6 +1,6 @@
-import _ from 'lodash'
 import { createSelector } from 'reselect'
 
+import { TravisResult } from '../../../types'
 import { RootState } from '../../rootReducer'
 
 export const getState = (state: RootState) => state.questions
@@ -35,13 +35,30 @@ export const getQuestionsCount = createSelector(
   (state) => state.questions.data.length
 )
 
-export const getCorrectAnswers = createSelector(getState, (state) =>
-  state.correctIndexes.map((index) => state.questions.data[index])
-)
+export const getAnswers = createSelector(getState, (state) => state.answers)
 
-export const getIncorrectAnswers = createSelector(getState, (state) =>
-  _.difference(
-    _.range(0, state.questions.data.length),
-    state.correctIndexes
-  ).map((index) => state.questions.data[index])
+export const getResult = createSelector(
+  getQuestions,
+  getAnswers,
+  (questions, answers): TravisResult => {
+    let correctCount = 0
+    let incorrectCount = 0
+    const correctness = questions.map((question, index) => {
+      if (question.correct_answer === answers[index]) {
+        correctCount += 1
+        return true
+      } else {
+        incorrectCount += 1
+        return false
+      }
+    })
+
+    return {
+      correctCount,
+      incorrectCount,
+      correctness,
+      answers,
+      questions,
+    }
+  }
 )

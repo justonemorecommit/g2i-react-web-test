@@ -12,7 +12,7 @@ import {
 } from 'reactstrap'
 
 import { Question } from '../../types'
-import AppCard from '../AppCard'
+import AppCard, { AppCardTitle } from '../AppCard'
 import './QuestionCard.styles.scss'
 
 interface Props {
@@ -50,7 +50,7 @@ function QuestionCard(props: Props) {
     <AppCard tag="article" className="question-card">
       <CardHeader className="d-flex d-flex justify-content-center">
         {question ? (
-          <h5 className="category">{question.category}</h5>
+          <AppCardTitle title={question.category} />
         ) : (
           <Skeleton width="100px" height="40px" />
         )}
