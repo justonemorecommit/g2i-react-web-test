@@ -11,10 +11,10 @@ import AppContainer from '../../components/AppContainer'
 import { playAgain } from '../../store/modules/questions/actions'
 import { getResult } from '../../store/modules/questions/selectors'
 import { RootState } from '../../store/rootReducer'
-import { TravisResult } from '../../types'
+import { TriviaResult } from '../../types'
 
 interface SelectedProps {
-  result: TravisResult
+  result: TriviaResult
 }
 
 const mapState = createStructuredSelector<RootState, SelectedProps>({

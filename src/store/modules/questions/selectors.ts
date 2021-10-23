@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-import { TravisResult } from '../../../types'
+import { TriviaResult } from '../../../types'
 import { RootState } from '../../rootReducer'
 
 export const getState = (state: RootState) => state.questions
@@ -40,7 +40,7 @@ export const getAnswers = createSelector(getState, (state) => state.answers)
 export const getResult = createSelector(
   getQuestions,
   getAnswers,
-  (questions, answers): TravisResult => {
+  (questions, answers): TriviaResult => {
     let correctCount = 0
     let incorrectCount = 0
     const correctness = questions.map((question, index) => {
