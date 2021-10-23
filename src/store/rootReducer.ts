@@ -1,5 +1,6 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import questionsReducer from "./modules/questions";
+import { combineReducers } from '@reduxjs/toolkit';
+
+import questionsReducer from './modules/questions';
 
 const rootReducer = combineReducers({
   questions: questionsReducer,

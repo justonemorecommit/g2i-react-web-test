@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import Skeleton from 'react-loading-skeleton'
+import _ from 'lodash';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import {
   CardHeader,
   CardBody,
@@ -9,42 +9,42 @@ import {
   FormGroup,
   Label,
   Button,
-} from 'reactstrap'
+} from 'reactstrap';
 
-import { Question } from '../../types'
-import AppCard, { AppCardTitle } from '../AppCard'
-import './QuestionCard.styles.scss'
+import { Question } from '../../types';
+import AppCard, { AppCardTitle } from '../AppCard';
+import './QuestionCard.styles.scss';
 
 interface Props {
-  question: Question | null
-  currentIndex: number
-  totalCount: number
-  onSubmit: (answer: string) => void
+  question: Question | null;
+  currentIndex: number;
+  totalCount: number;
+  onSubmit: (answer: string) => void;
 }
 
 function QuestionCard(props: Props) {
-  const { question, currentIndex, totalCount, onSubmit } = props
-  const [selected, setSelected] = useState<string | null>(null)
+  const { question, currentIndex, totalCount, onSubmit } = props;
+  const [selected, setSelected] = useState<string | null>(null);
 
   const answers = useMemo(() => {
     return _.compact(
       _.flatten([question?.correct_answer, question?.incorrect_answers])
-    ).sort(() => Math.random() - Math.random())
-  }, [question])
+    ).sort(() => Math.random() - Math.random());
+  }, [question]);
 
   useEffect(() => {
-    setSelected(null)
-  }, [question])
+    setSelected(null);
+  }, [question]);
 
   const handleClick = useCallback((answer: string) => {
-    setSelected(answer)
-  }, [])
+    setSelected(answer);
+  }, []);
 
   const handleSubmit = useCallback(() => {
-    if (!selected) return
+    if (!selected) return;
 
-    onSubmit(selected)
-  }, [onSubmit, selected])
+    onSubmit(selected);
+  }, [onSubmit, selected]);
 
   return (
     <AppCard tag="article" className="question-card">
@@ -107,7 +107,7 @@ function QuestionCard(props: Props) {
         )}
       </CardFooter>
     </AppCard>
-  )
+  );
 }
 
-export default QuestionCard
+export default QuestionCard;

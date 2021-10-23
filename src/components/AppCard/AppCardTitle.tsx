@@ -1,13 +1,13 @@
-import './AppCardTitle.styles.scss'
+import './AppCardTitle.styles.scss';
 
 interface Props {
-  title: string | null
+  title: string | null;
 }
 
 function AppCardTitle(props: Props) {
-  const { title } = props
+  const { title } = props;
 
-  return <h1 className="app-card-title">{title}</h1>
+  return <h1 className="app-card-title">{title}</h1>;
 }
 
-export default AppCardTitle
+export default AppCardTitle;

@@ -1,15 +1,15 @@
-import { useCallback, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
-import { AnyAction, bindActionCreators, Dispatch } from 'redux'
-import { createStructuredSelector } from 'reselect'
+import { useCallback, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import AppContainer from '../../components/AppContainer'
-import QuestionCard from '../../components/QuestionCard'
+import AppContainer from '../../components/AppContainer';
+import QuestionCard from '../../components/QuestionCard';
 import {
   loadQuestions,
   submitAnswer,
-} from '../../store/modules/questions/actions'
+} from '../../store/modules/questions/actions';
 import {
   getQuestions,
   getQuestionsError,
@@ -17,23 +17,23 @@ import {
   getCurrentQuestion,
   getCurrentIndex,
   getQuestionsCount,
-} from '../../store/modules/questions/selectors'
-import { RootState } from '../../store/rootReducer'
-import { Question } from '../../types'
+} from '../../store/modules/questions/selectors';
+import { RootState } from '../../store/rootReducer';
+import { Question } from '../../types';
 
 interface SelectedProps {
-  questions: Question[]
-  loading: boolean
-  error: any
-  currentQuestion: Question | null
-  currentIndex: number
-  totalCount: number
+  questions: Question[];
+  loading: boolean;
+  error: any;
+  currentQuestion: Question | null;
+  currentIndex: number;
+  totalCount: number;
 }
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) =>
-  bindActionCreators({ loadQuestions, submitAnswer }, dispatch)
+  bindActionCreators({ loadQuestions, submitAnswer }, dispatch);
 
-type DispatchProps = ReturnType<typeof mapDispatch>
+type DispatchProps = ReturnType<typeof mapDispatch>;
 
 const mapState = createStructuredSelector<RootState, SelectedProps>({
   questions: getQuestions,
@@ -42,9 +42,9 @@ const mapState = createStructuredSelector<RootState, SelectedProps>({
   currentQuestion: getCurrentQuestion,
   currentIndex: getCurrentIndex,
   totalCount: getQuestionsCount,
-})
+});
 
-type Props = SelectedProps & DispatchProps & RouteComponentProps
+type Props = SelectedProps & DispatchProps & RouteComponentProps;
 
 function QuestionContainer(props: Props) {
   const {
@@ -55,26 +55,26 @@ function QuestionContainer(props: Props) {
     loadQuestions,
     submitAnswer,
     history,
-  } = props
+  } = props;
 
   useEffect(() => {
-    history.push('/questions/' + (currentIndex + 1))
-  }, [currentIndex, history])
+    history.push('/questions/' + (currentIndex + 1));
+  }, [currentIndex, history]);
 
   useEffect(() => {
-    loadQuestions()
-  }, [loadQuestions])
+    loadQuestions();
+  }, [loadQuestions]);
 
   const handleSubmit = useCallback(
     (answer: string) => {
-      submitAnswer({ answer })
+      submitAnswer({ answer });
 
       if (currentIndex === totalCount - 1) {
-        history.push('/result')
+        history.push('/result');
       }
     },
     [history, totalCount, currentIndex, submitAnswer]
-  )
+  );
 
   return (
     <AppContainer>
@@ -84,7 +84,7 @@ function QuestionContainer(props: Props) {
         currentIndex={currentIndex}
         totalCount={totalCount}></QuestionCard>
     </AppContainer>
-  )
+  );
 }
 
-export default connect(mapState, mapDispatch)(QuestionContainer)
+export default connect(mapState, mapDispatch)(QuestionContainer);

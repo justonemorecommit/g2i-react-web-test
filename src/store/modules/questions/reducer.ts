@@ -1,16 +1,16 @@
-import { createReducer } from '@reduxjs/toolkit'
+import { createReducer } from '@reduxjs/toolkit';
 
-import { Question } from '../../../types'
-import { loadQuestions, playAgain, submitAnswer } from './actions'
+import { Question } from '../../../types';
+import { loadQuestions, playAgain, submitAnswer } from './actions';
 
 interface ModuleState {
   questions: {
-    loading: boolean
-    data: Question[]
-    error: any
-  }
-  currentIndex: number
-  answers: string[]
+    loading: boolean;
+    data: Question[];
+    error: any;
+  };
+  currentIndex: number;
+  answers: string[];
 }
 
 const reducer = createReducer<ModuleState>(
@@ -26,30 +26,30 @@ const reducer = createReducer<ModuleState>(
   (builder) =>
     builder
       .addCase(loadQuestions.pending, (state) => {
-        state.questions.loading = true
-        state.questions.error = null
+        state.questions.loading = true;
+        state.questions.error = null;
       })
       .addCase(loadQuestions.fulfilled, (state, { payload }) => {
-        state.questions.loading = false
-        state.questions.data = payload.data.results
+        state.questions.loading = false;
+        state.questions.data = payload.data.results;
       })
       .addCase(loadQuestions.rejected, (state, { payload }) => {
-        state.questions.loading = false
-        state.questions.error = payload
+        state.questions.loading = false;
+        state.questions.error = payload;
       })
       .addCase(submitAnswer, (state, { payload }) => {
-        state.answers[state.currentIndex] = payload.answer
+        state.answers[state.currentIndex] = payload.answer;
 
-        state.currentIndex += 1
+        state.currentIndex += 1;
 
         if (state.currentIndex === state.questions.data.length) {
-          state.currentIndex = 0
+          state.currentIndex = 0;
         }
       })
       .addCase(playAgain, (state) => {
-        state.currentIndex = 0
-        state.answers = []
+        state.currentIndex = 0;
+        state.answers = [];
       })
-)
+);
 
-export default reducer
+export default reducer;

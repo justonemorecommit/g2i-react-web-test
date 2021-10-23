@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 function Layout(props: Props) {
@@ -9,7 +9,7 @@ function Layout(props: Props) {
     <div className="d-flex pt-5 d-flex justify-content-center">
       {props.children}
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

@@ -1,16 +1,16 @@
-import Icons from 'bootstrap-icons/bootstrap-icons.svg'
-import { ListGroup, ListGroupItem } from 'reactstrap'
+import Icons from 'bootstrap-icons/bootstrap-icons.svg';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
-import { Question } from '../../types'
-import './AnswerList.styles.scss'
+import { Question } from '../../types';
+import './AnswerList.styles.scss';
 
 interface Props {
-  correctness: boolean[]
-  questions: Question[]
+  correctness: boolean[];
+  questions: Question[];
 }
 
 function AnswerList(props: Props) {
-  const { questions, correctness } = props
+  const { questions, correctness } = props;
 
   return (
     <ListGroup className="answer-list-group">
@@ -28,7 +28,7 @@ function AnswerList(props: Props) {
         </ListGroupItem>
       ))}
     </ListGroup>
-  )
+  );
 }
 
-export default AnswerList
+export default AnswerList;

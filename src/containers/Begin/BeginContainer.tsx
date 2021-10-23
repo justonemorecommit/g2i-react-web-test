@@ -1,19 +1,19 @@
-import { useCallback } from 'react'
-import { RouteComponentProps } from 'react-router'
-import { Button, CardBody, CardFooter, CardHeader } from 'reactstrap'
+import { useCallback } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { Button, CardBody, CardFooter, CardHeader } from 'reactstrap';
 
-import AppCard, { AppCardTitle } from '../../components/AppCard'
-import AppContainer from '../../components/AppContainer'
-import './BeginContainer.styles.scss'
+import AppCard, { AppCardTitle } from '../../components/AppCard';
+import AppContainer from '../../components/AppContainer';
+import './BeginContainer.styles.scss';
 
-type Props = RouteComponentProps
+type Props = RouteComponentProps;
 
 function Begin(props: Props) {
-  const { history } = props
+  const { history } = props;
 
   const handleClickBegin = useCallback(() => {
-    history.push('/questions/1')
-  }, [history])
+    history.push('/questions/1');
+  }, [history]);
 
   return (
     <div className="begin-container">
@@ -34,7 +34,7 @@ function Begin(props: Props) {
         </AppCard>
       </AppContainer>
     </div>
-  )
+  );
 }
 
-export default Begin
+export default Begin;

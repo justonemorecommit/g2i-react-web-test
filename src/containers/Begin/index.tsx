@@ -1,1 +1,1 @@
-export { default } from './BeginContainer'
+export { default } from './BeginContainer';

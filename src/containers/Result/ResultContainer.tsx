@@ -1,25 +1,25 @@
-import { useCallback } from 'react'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
-import { Button, CardBody, CardFooter, CardHeader } from 'reactstrap'
-import { AnyAction, bindActionCreators, Dispatch } from 'redux'
-import { createStructuredSelector } from 'reselect'
+import { useCallback } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
+import { Button, CardBody, CardFooter, CardHeader } from 'reactstrap';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import AnswerList from '../../components/AnswerList'
-import AppCard, { AppCardTitle } from '../../components/AppCard'
-import AppContainer from '../../components/AppContainer'
-import { playAgain } from '../../store/modules/questions/actions'
-import { getResult } from '../../store/modules/questions/selectors'
-import { RootState } from '../../store/rootReducer'
-import { TriviaResult } from '../../types'
+import AnswerList from '../../components/AnswerList';
+import AppCard, { AppCardTitle } from '../../components/AppCard';
+import AppContainer from '../../components/AppContainer';
+import { playAgain } from '../../store/modules/questions/actions';
+import { getResult } from '../../store/modules/questions/selectors';
+import { RootState } from '../../store/rootReducer';
+import { TriviaResult } from '../../types';
 
 interface SelectedProps {
-  result: TriviaResult
+  result: TriviaResult;
 }
 
 const mapState = createStructuredSelector<RootState, SelectedProps>({
   result: getResult,
-})
+});
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
@@ -27,24 +27,24 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) =>
       playAgain,
     },
     dispatch
-  )
+  );
 
-type DispatchProps = ReturnType<typeof mapDispatch>
+type DispatchProps = ReturnType<typeof mapDispatch>;
 
-type Props = SelectedProps & DispatchProps & RouteComponentProps
+type Props = SelectedProps & DispatchProps & RouteComponentProps;
 
 function ResultCard(props: Props) {
   const {
     result: { correctness, correctCount, questions },
     history,
     playAgain,
-  } = props
+  } = props;
 
   const handlePlayAgain = useCallback(() => {
-    playAgain()
+    playAgain();
 
-    history.push('/')
-  }, [history, playAgain])
+    history.push('/');
+  }, [history, playAgain]);
 
   return (
     <AppContainer>
@@ -63,7 +63,7 @@ function ResultCard(props: Props) {
         </CardFooter>
       </AppCard>
     </AppContainer>
-  )
+  );
 }
 
-export default connect(mapState, mapDispatch)(ResultCard)
+export default connect(mapState, mapDispatch)(ResultCard);
