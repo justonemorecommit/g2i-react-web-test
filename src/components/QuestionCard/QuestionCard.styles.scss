@@ -1,8 +1,4 @@
 .question-card {
-  width: 375px;
-  background: #e3e3e3;
-  border: none;
-
   .card-header {
     background-color: transparent;
     border: none;
@@ -15,9 +11,6 @@
   }
 
   .card-body {
-    padding: 50px 25px 50px 25px;
-    border: none;
-
     .question-text {
       border: 1px solid rgba(0, 0, 0, 0.125);
       padding: 80px 30px;
@@ -28,10 +21,5 @@
     fieldset legend {
       font-weight: bold;
     }
-  }
-
-  .card-footer {
-    border: none;
-    background-color: transparent;
   }
 }

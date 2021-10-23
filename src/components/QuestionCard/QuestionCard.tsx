@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import Tooltip from 'rc-tooltip'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import {
   Card,
@@ -14,6 +13,7 @@ import {
 } from 'reactstrap'
 
 import { Question } from '../../types'
+import AppCard from '../AppCard'
 import './QuestionCard.styles.scss'
 
 interface Props {
@@ -33,6 +33,10 @@ function QuestionCard(props: Props) {
     ).sort(() => Math.random() - Math.random())
   }, [question])
 
+  useEffect(() => {
+    setSelected(null)
+  }, [question])
+
   const handleClick = useCallback((answer: string) => {
     setSelected(answer)
   }, [])
@@ -44,7 +48,7 @@ function QuestionCard(props: Props) {
   }, [onSubmit, selected])
 
   return (
-    <Card tag="article" className="question-card">
+    <AppCard tag="article" className="question-card">
       <CardHeader className="d-flex d-flex justify-content-center">
         {question ? (
           <h5 className="category">{question.category}</h5>
@@ -97,21 +101,14 @@ function QuestionCard(props: Props) {
       </CardBody>
       <CardFooter className="d-flex justify-content-center">
         {question ? (
-          <Tooltip
-            placement="left"
-            trigger={['hover']}
-            overlay={<span>Please select an answer</span>}
-            overlayClassName={selected ? 'd-none' : ''}
-            mouseLeaveDelay={0.1}>
-            <Button color="primary" onClick={handleSubmit} disabled={!selected}>
-              Submit
-            </Button>
-          </Tooltip>
+          <Button onClick={handleSubmit} disabled={!selected}>
+            Submit
+          </Button>
         ) : (
           <Skeleton width="100px" height="40px" />
         )}
       </CardFooter>
-    </Card>
+    </AppCard>
   )
 }
 
