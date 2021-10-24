@@ -17,10 +17,9 @@ A simple quiz app with 10 True or False questions
 
 - `npm install` to install dependencies
 - `npm start` to start the app \
-  View on `http://localhost:3000`
+  View at `http://localhost:3000`
 
 ## Steps to build an app
 
 - `npm install` to install dependencies
 - `npm build` to build a production bundle
-

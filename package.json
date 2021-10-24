@@ -53,12 +53,14 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@trivago/prettier-plugin-sort-imports": "^2.0.4",
+    "@types/faker": "^5.5.9",
     "@types/history": "^4.7.9",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.2",
     "@types/react": "^17.0.31",
     "@types/react-dom": "^17.0.10",
     "@types/react-router": "^5.1.17",
+    "faker": "^5.5.3",
     "redux-devtools-extension": "^2.13.9"
   }
 }
