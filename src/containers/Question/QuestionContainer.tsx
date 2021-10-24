@@ -87,4 +87,6 @@ function QuestionContainer(props: Props) {
   );
 }
 
+export type { SelectedProps, DispatchProps, Props };
+export { QuestionContainer };
 export default connect(mapState, mapDispatch)(QuestionContainer);
