@@ -37,4 +37,5 @@ function Begin(props: Props) {
   );
 }
 
+export { Begin };
 export default Begin;
