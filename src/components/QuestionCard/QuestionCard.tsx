@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, MouseEvent } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import {
   CardHeader,
@@ -40,11 +40,15 @@ function QuestionCard(props: Props) {
     setSelected(answer);
   }, []);
 
-  const handleSubmit = useCallback(() => {
-    if (!selected) return;
+  const handleSubmit = useCallback(
+    (e: MouseEvent) => {
+      if (!selected) return;
 
-    onSubmit(selected);
-  }, [onSubmit, selected]);
+      e.preventDefault();
+      onSubmit(selected);
+    },
+    [onSubmit, selected]
+  );
 
   return (
     <AppCard tag="article" className="question-card">
@@ -99,7 +103,7 @@ function QuestionCard(props: Props) {
       </CardBody>
       <CardFooter className="d-flex justify-content-center">
         {question ? (
-          <Button onClick={handleSubmit} disabled={!selected}>
+          <Button type="submit" onClick={handleSubmit} disabled={!selected}>
             SUBMIT
           </Button>
         ) : (
@@ -110,4 +114,5 @@ function QuestionCard(props: Props) {
   );
 }
 
+export type { Props };
 export default QuestionCard;
