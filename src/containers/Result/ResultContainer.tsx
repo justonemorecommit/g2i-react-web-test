@@ -66,4 +66,6 @@ function ResultCard(props: Props) {
   );
 }
 
+export type { SelectedProps, DispatchProps };
+export { ResultCard };
 export default connect(mapState, mapDispatch)(ResultCard);
