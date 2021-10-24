@@ -13,13 +13,21 @@ A simple quiz app with 10 True or False questions
 - Bootstrap
 - TypeScript
 
+## Steps to install
+- `npm install` to install dependencies
+- Set environment \
+  Make a copy of `.env.example` as `.env` and set `REACT_APP_API_URL=<API_URL>` \
+  For example `REACT_APP_API_URL=https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`
+
 ## Steps to start app in local
 
-- `npm install` to install dependencies
 - `npm start` to start the app \
   View at `http://localhost:3000`
 
-## Steps to build an app
+## Steps to build app
 
-- `npm install` to install dependencies
 - `npm build` to build a production bundle
+
+## Steps to test app
+
+- `npm test` to test the whole app 
