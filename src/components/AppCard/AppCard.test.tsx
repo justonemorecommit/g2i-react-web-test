@@ -5,7 +5,7 @@ import AppCard from '.';
 
 it('should render children and has app-card class', () => {
   const className = 'example-class-name';
-  const childrenTestId = Math.floor(Math.random());
+  const childrenTestId = faker.random.alpha({ count: 10 });
   const children = <div data-testid={childrenTestId}></div>;
 
   const element = render(<AppCard className={className}>{children}</AppCard>);

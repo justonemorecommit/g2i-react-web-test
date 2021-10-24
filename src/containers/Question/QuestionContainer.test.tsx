@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
-import { createLocation, createMemoryHistory } from 'history';
 import _ from 'lodash';
 import { RouteComponentProps } from 'react-router';
 
+import { mockQuestion, mockRouteProps } from '../../app-test-lib/mock';
 import {
   loadQuestions,
   submitAnswer,
@@ -20,16 +20,8 @@ const mockSelectedProps = (
 ): SelectedProps => {
   const totalCount = overrides?.totalCount || 10;
   const currentIndex =
-    overrides?.currentIndex || Math.floor(Math.random()) % totalCount;
-  const questions = _.range(totalCount).map(() => {
-    const correct_answer = faker.random.arrayElement(['True', 'False']);
-    return {
-      question: faker.lorem.sentence(),
-      correct_answer: correct_answer,
-      incorrect_answers: [correct_answer === 'True' ? 'False' : 'True'],
-      category: faker.lorem.word(),
-    };
-  });
+    overrides?.currentIndex || Math.floor(Math.random() * totalCount);
+  const questions = _.range(totalCount).map(mockQuestion);
 
   return {
     questions,
@@ -50,15 +42,6 @@ const mockDispatchProps = (
   ...overrides,
 });
 
-const mockRouteProps = (
-  overrides: Partial<RouteComponentProps>
-): RouteComponentProps => ({
-  history: createMemoryHistory(),
-  location: createLocation('/questions/1'),
-  match: { params: {}, path: '/questions/1', isExact: false, url: '/' },
-  ...overrides,
-});
-
 const renderComponent = (
   selectedOverrides: Partial<SelectedProps> = {},
   dispatchOverrides: Partial<DispatchProps> = {},
@@ -66,7 +49,7 @@ const renderComponent = (
 ) => {
   const selectedProps = mockSelectedProps(selectedOverrides);
   const dispatchProps = mockDispatchProps(dispatchOverrides);
-  const routeProps = mockRouteProps(routeOverrides);
+  const routeProps = mockRouteProps('/questions/1', routeOverrides);
 
   return {
     renderResult: render(

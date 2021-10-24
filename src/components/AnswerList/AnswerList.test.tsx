@@ -13,9 +13,7 @@ const questions: Question[] = _.range(0, 10).map(() => ({
   correct_answer: 'True',
   incorrect_answers: ['False'],
 }));
-const correctness: boolean[] = _.range(0, 10).map(
-  () => Math.floor(Math.random()) % 2 === 0
-);
+const correctness: boolean[] = _.range(0, 10).map(() => Math.random() >= 0.5);
 
 it('renders a list', () => {
   act(() => {

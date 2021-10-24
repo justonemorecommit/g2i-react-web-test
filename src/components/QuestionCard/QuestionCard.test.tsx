@@ -2,15 +2,11 @@ import { render, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
 
+import { mockQuestion } from '../../app-test-lib/mock';
 import { Question } from '../../types';
 import QuestionCard, { Props as QuestionProps } from './QuestionCard';
 
-const question: Question = {
-  question: faker.lorem.sentence(),
-  correct_answer: 'True',
-  incorrect_answers: ['False'],
-  category: faker.name.title(),
-};
+const question: Question = mockQuestion();
 const totalCount = 10;
 const currentIndex = 6;
 
