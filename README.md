@@ -12,6 +12,8 @@ A simple quiz app with 10 True or False questions
 - Redux
 - Bootstrap
 - TypeScript
+- Jest
+- React Testing Library
 
 ## Steps to install
 - `npm install` to install dependencies
